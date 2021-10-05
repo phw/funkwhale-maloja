@@ -28,13 +28,8 @@ PLUGIN = plugins.get_plugin_config(
     homepage="https://github.com/krateng/maloja",
     version="0.1",
     user=True,
-    conf=[{
-        "name": "server_url",
-        "type": "text",
-        "label": "Maloja server URL",
-    }, {
-        "name": "api_key",
-        "type": "text",
-        "label": "Your Maloja API key",
-    }],
+    conf=[
+        {"name": "server_url", "type": "text", "label": "Maloja server URL"},
+        {"name": "api_key", "type": "text", "label": "Your Maloja API key"},
+    ],
 )

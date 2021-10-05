@@ -20,6 +20,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import json
+
 from config import plugins
 from .funkwhale_startup import PLUGIN
 
@@ -30,16 +31,16 @@ class MalojaException(Exception):
 
 @plugins.register_hook(plugins.LISTENING_CREATED, PLUGIN)
 def submit_listen(listening, conf, **kwargs):
-    server_url = conf['server_url']
-    api_key = conf['api_key']
+    server_url = conf["server_url"]
+    api_key = conf["api_key"]
     if not server_url or not api_key:
         return
 
-    logger = PLUGIN['logger']
-    logger.info('Submitting listening to Majola at %s', server_url)
+    logger = PLUGIN["logger"]
+    logger.info("Submitting listening to Majola at %s", server_url)
     payload = get_payload(listening, api_key)
-    logger.debug('Majola payload: %r', payload)
-    url = server_url.rstrip('/') + '/apis/mlj_1/newscrobble'
+    logger.debug("Majola payload: %r", payload)
+    url = server_url.rstrip("/") + "/apis/mlj_1/newscrobble"
     session = plugins.get_session()
     response = session.post(url, payload)
     response.raise_for_status()
@@ -53,13 +54,13 @@ def submit_listen(listening, conf, **kwargs):
 def get_payload(listening, api_key):
     track = listening.track
     payload = {
-        'key': api_key,
-        'artists': track.artist.name,
-        'title': track.title,
-        'time': int(listening.creation_date.timestamp()),
+        "key": api_key,
+        "artists": track.artist.name,
+        "title": track.title,
+        "time": int(listening.creation_date.timestamp()),
     }
 
     if track.album:
-        payload['album'] = track.album.title
+        payload["album"] = track.album.title
 
     return payload
