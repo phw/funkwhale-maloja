@@ -3,6 +3,8 @@
 Submit your listens to your [Maloja](https://github.com/krateng/maloja) server
 when listening to music on a [Funkwhale](https://funkwhale.audio/) pod.
 
+**Note: Since Funkwhale 1.2 this plugin is available as a core plugin. Please see the [official documentation](https://docs.funkwhale.audio/users/builtinplugins.html#maloja) for details.**
+
 
 ## Installation
 
